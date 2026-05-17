@@ -1,0 +1,101 @@
+[workspace]
+resolver = "2"
+members = [
+    "tlanticad-core",
+    "tlanticad-geometry",
+    "tlanticad-mesh",
+    "tlanticad-io",
+    "tlanticad-workspace",
+    "tlanticad-ai",
+    "tlanticad-config",
+    "tlanticad-library",
+    "tlanticad-rendering",
+    "tlanticad-crown",
+    "tlanticad-bridge",
+    "tlanticad-abutment",
+    "tlanticad-alignment",
+    "tlanticad-articulator",
+    "tlanticad-endo",
+    "tlanticad-compute",
+    "tlanticad-implant",
+    "tlanticad-model",
+    "tlanticad-bar",
+    "tlanticad-telescope",
+    "tlanticad-bite-splint",
+    "tlanticad-waxup",
+    "tlanticad-freeform",
+    "tlanticad-dental",
+    "tlanticad-project",
+    "tlanticad-tensor",
+    "tlanticad-python",
+    "tlanticad-dicom",
+    "tlanticad-notation",
+    "tlanticad-perf",
+    "tlanticad-manufacturing",
+    "tlanticad-workflow",
+    "tlanticad-denture",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/tlanti/gesto"
+rust-version = "1.77"
+
+[workspace.dependencies]
+# Internal crates
+tlanticad-core = { path = "tlanticad-core" }
+tlanticad-geometry = { path = "tlanticad-geometry" }
+tlanticad-mesh = { path = "tlanticad-mesh" }
+tlanticad-io = { path = "tlanticad-io" }
+tlanticad-db = { path = "tlanticad-workspace" }
+tlanticad-ai = { path = "tlanticad-ai" }
+tlanticad-config = { path = "tlanticad-config" }
+tlanticad-library = { path = "tlanticad-library" }
+tlanticad-rendering = { path = "tlanticad-rendering" }
+tlanticad-crown = { path = "tlanticad-crown" }
+tlanticad-bridge = { path = "tlanticad-bridge" }
+tlanticad-abutment = { path = "tlanticad-abutment" }
+tlanticad-alignment = { path = "tlanticad-alignment" }
+tlanticad-implant = { path = "tlanticad-implant" }
+tlanticad-model = { path = "tlanticad-model" }
+tlanticad-bar = { path = "tlanticad-bar" }
+tlanticad-telescope = { path = "tlanticad-telescope" }
+tlanticad-bite-splint = { path = "tlanticad-bite-splint" }
+tlanticad-waxup = { path = "tlanticad-waxup" }
+tlanticad-freeform = { path = "tlanticad-freeform" }
+tlanticad-dental = { path = "tlanticad-dental" }
+tlanticad-project = { path = "tlanticad-project" }
+tlanticad-tensor = { path = "tlanticad-tensor" }
+tlanticad-python = { path = "tlanticad-python" }
+tlanticad-dicom = { path = "tlanticad-dicom" }
+tlanticad-notation = { path = "tlanticad-notation" }
+tlanticad-perf = { path = "tlanticad-perf" }
+tlanticad-manufacturing = { path = "tlanticad-manufacturing" }
+tlanticad-workflow = { path = "tlanticad-workflow" }
+tlanticad-denture = { path = "tlanticad-denture" }
+
+# External dependencies
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+nalgebra = { version = "0.33", features = ["serde-serialize"] }
+parry3d = "0.17"
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "chrono", "uuid"] }
+tokio = { version = "1", features = ["full"] }
+rayon = "1.10"
+stl_io = "0.8"
+
+# S1: High-performance collections (SwissTable)
+hashbrown = { version = "0.16", features = ["serde", "rayon", "inline-more"] }
+
+# S3: Dental notation parsing (FDI, Universal, Palmer)
+dental-notation = "1.0.0"
+ndarray = { version = "0.16", features = ["serde"] }
+sysinfo = "0.31"

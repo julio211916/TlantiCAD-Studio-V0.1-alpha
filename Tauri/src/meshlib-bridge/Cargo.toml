@@ -1,0 +1,30 @@
+[package]
+name = "meshlib-bridge"
+version = "0.1.0"
+edition = "2021"
+description = "MeshLib WebAssembly bridge for TlantiStudio"
+
+[dependencies]
+app_core = { package = "core", path = "../core" }
+
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+
+# WebAssembly bindings (for native Rust wrapper)
+# The actual MeshLib WASM will be loaded in the frontend
+
+# Mesh processing utilities
+nalgebra = "0.33"
+parry3d = "0.18"
+
+# File format support
+wavefront_obj = "10.0"
+stl_io = "0.7"
+ply-rs = "0.1"
+
+# Binary serialization for mesh data
+bincode = "1.3"

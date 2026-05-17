@@ -1,0 +1,17 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { AppQueryProvider } from './providers/AppQueryProvider';
+import './styles/globals.css';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <AppQueryProvider>
+      <App />
+    </AppQueryProvider>
+  </React.StrictMode>
+);

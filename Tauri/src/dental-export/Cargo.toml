@@ -1,0 +1,26 @@
+[package]
+name = "dental-export"
+version = "0.1.0"
+edition = "2021"
+description = "Excel/CSV import-export for TlantiStudio Dental"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+
+# Excel read (xls, xlsx, xlsm, ods)
+calamine = "0.26"
+
+# Excel write (xlsx)
+rust_xlsxwriter = "0.83"
+
+# CSV
+csv = "1.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.16", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+rust_decimal = { version = "1.37", features = ["serde"] }
+thiserror = "2.0"
+tracing = "0.1"

@@ -1,0 +1,14 @@
+[package]
+name = "tlanticad-perf"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+sysinfo = "0.31"
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }
+chrono = { workspace = true }
+tokio = { workspace = true }

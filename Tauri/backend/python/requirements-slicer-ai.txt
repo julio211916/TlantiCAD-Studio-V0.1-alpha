@@ -1,0 +1,5 @@
+torch==2.11.0
+torchvision==0.26.0
+nnunetv2==2.7.0
+connected-components-3d==3.27.0
+dicom2nifti==2.6.2

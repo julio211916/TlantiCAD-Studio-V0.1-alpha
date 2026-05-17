@@ -1,0 +1,14 @@
+[package]
+name = "tlanticad-bar"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Bar Design Module"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }
+uuid = { workspace = true }

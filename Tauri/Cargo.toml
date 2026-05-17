@@ -1,0 +1,113 @@
+[package]
+name = "tlanticad-studio"
+version = "0.1.0-alpha.1"
+edition = "2021"
+license = "MIT"
+build = "build.rs"
+
+[lib]
+name = "tlanticad_studio_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "tlanticad-studio"
+path = "src/main.rs"
+
+[features]
+default = ["backend-geometry", "backend-dicom", "backend-formats"]
+backend-compression = []
+backend-csg = []
+backend-dicom = ["dep:dicom-object"]
+backend-formats = []
+backend-geometry = []
+backend-manifold-csg = ["dep:manifold-csg"]
+backend-ml = []
+backend-opencascade = []
+backend-optimization = []
+backend-python-embed = ["dep:pyo3"]
+backend-vision = []
+
+[build-dependencies]
+tauri-build = { version = "2.5", features = [] }
+
+[dependencies]
+aes-gcm = "0.10"
+base64 = "0.22"
+chrono = { version = "0.4", features = ["serde"] }
+dicom-object = { version = "0.8", optional = true }
+hkdf = "0.12"
+hmac = "0.12"
+hostname = "0.4"
+image = { version = "0.25", default-features = false, features = ["png"] }
+local-ip-address = "0.6"
+log = "0.4"
+lzma-rs = "0.3"
+mdns-sd = "0.13"
+nalgebra = { version = "0.33", features = ["serde-serialize"] }
+notify = "8.2"
+parry3d = "0.17"
+pyo3 = { version = "0.27", features = ["auto-initialize"], optional = true }
+rand = "0.8"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+rstar = "0.12"
+rusqlite = { version = "0.32", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+stl_io = "0.8"
+tauri = { version = "2.9", features = [] }
+tauri-plugin-clipboard-manager = "2.3"
+tauri-plugin-dialog = "2.4"
+tauri-plugin-fs = "2.4"
+tauri-plugin-http = "2.5"
+tauri-plugin-log = "2.7"
+tauri-plugin-notification = "2.3"
+tauri-plugin-opener = "2.5"
+tauri-plugin-os = "2.3"
+tauri-plugin-positioner = "2.3"
+tauri-plugin-process = "2.3"
+tauri-plugin-shell = "2.3"
+tauri-plugin-single-instance = "2.3"
+tauri-plugin-sql = { version = "2.3", features = ["sqlite"] }
+tauri-plugin-store = "2.4"
+tauri-plugin-window-state = "2.4"
+thiserror = "2"
+tokio = { version = "1", features = ["full"] }
+urlencoding = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+
+tlanticad-abutment = { path = "src/tlanticad-abutment" }
+tlanticad-ai = { path = "src/tlanticad-ai" }
+tlanticad-alignment = { path = "src/tlanticad-alignment" }
+tlanticad-articulator = { path = "src/tlanticad-articulator" }
+tlanticad-bar = { path = "src/tlanticad-bar" }
+tlanticad-bite-splint = { path = "src/tlanticad-bite-splint" }
+tlanticad-bridge = { path = "src/tlanticad-bridge" }
+tlanticad-compute = { path = "src/tlanticad-compute" }
+tlanticad-config = { path = "src/tlanticad-config" }
+tlanticad-core = { path = "src/tlanticad-core" }
+tlanticad-crown = { path = "src/tlanticad-crown" }
+tlanticad-db = { path = "src/tlanticad-workspace" }
+tlanticad-dental = { path = "src/tlanticad-dental" }
+tlanticad-dicom = { path = "src/tlanticad-dicom" }
+tlanticad-denture = { path = "src/tlanticad-denture" }
+tlanticad-endo = { path = "src/tlanticad-endo" }
+tlanticad-freeform = { path = "src/tlanticad-freeform" }
+tlanticad-geometry = { path = "src/tlanticad-geometry" }
+tlanticad-implant = { path = "src/tlanticad-implant" }
+tlanticad-io = { path = "src/tlanticad-io" }
+tlanticad-library = { path = "src/tlanticad-library" }
+tlanticad-manufacturing = { path = "src/tlanticad-manufacturing" }
+tlanticad-mesh = { path = "src/tlanticad-mesh" }
+tlanticad-model = { path = "src/tlanticad-model" }
+tlanticad-notation = { path = "src/tlanticad-notation" }
+tlanticad-perf = { path = "src/tlanticad-perf" }
+tlanticad-project = { path = "src/tlanticad-project" }
+tlanticad-python = { path = "src/tlanticad-python" }
+tlanticad-rendering = { path = "src/tlanticad-rendering" }
+tlanticad-telescope = { path = "src/tlanticad-telescope" }
+tlanticad-tensor = { path = "src/tlanticad-tensor" }
+tlanticad-waxup = { path = "src/tlanticad-waxup" }
+tlanticad-workflow = { path = "src/tlanticad-workflow" }
+system-info = { path = "src/system-info" }
+manifold-csg = { version = "0.1.4", optional = true }

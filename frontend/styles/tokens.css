@@ -1,0 +1,289 @@
+/**
+ * Design tokens — colors, spacing, radii, fonts.
+ *
+ * Modular split (V173). Owns:
+ *   - `:root` palette (dark default)
+ *   - `.light` palette overrides
+ *   - `@theme inline` mapping CSS vars → Tailwind v4 design tokens
+ */
+
+:root {
+  --radius: 0.5rem;
+  --black: #0f1417;
+  --surface: #171d21;
+  --surface-raised: #20282d;
+  --surface-sunken: #0b1013;
+  --border: #253036;
+  --border-visible: #2d363c;
+  --text-disabled: #666666;
+  --text-secondary: #a8b4b9;
+  --text-primary: #eef3f4;
+  --text-display: #ffffff;
+  --accent: #27c2a3;
+  --accent-subtle: rgba(39, 194, 163, 0.14);
+  --accent-violet: #7c5cff;
+  --success: #4aa66f;
+  --success-foreground: #a7f3c7;
+  --warning: #e6a23c;
+  --danger: #e65f5c;
+  --interactive: #8ab4ff;
+  --window-bg: #11171b;
+  --glass-bg: rgba(24, 30, 34, 0.74);
+  --glass-bg-strong: rgba(28, 35, 40, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --panel-bg: rgba(23, 29, 33, 0.86);
+  --panel-bg-raised: rgba(32, 40, 45, 0.92);
+  --control-bg: rgba(255, 255, 255, 0.06);
+  --control-bg-hover: rgba(255, 255, 255, 0.1);
+  --control-active: #f7f9fb;
+  --control-active-foreground: #0d1114;
+  --focus-ring: #76a9ff;
+  --dental-enamel: #f5f3ee;
+  --dental-metal: #2f3438;
+  --connector: #c79a3c;
+  --clinical-dicom: #8ab4ff;
+  --clinical-implant: #c9a46a;
+  --clinical-cad: #9ad0c2;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  --background: var(--black);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-raised);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--text-display);
+  --primary-foreground: #000000;
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-raised);
+  --muted-foreground: var(--text-secondary);
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --input: var(--border-visible);
+  --ring: var(--interactive);
+  --chart-1: var(--accent);
+  --chart-2: var(--interactive);
+  --chart-3: var(--success);
+  --chart-4: var(--warning);
+  --chart-5: var(--text-secondary);
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--text-display);
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: var(--surface-raised);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--interactive);
+}
+
+.light {
+  --black: #f5f5f5;
+  --surface: #ffffff;
+  --surface-raised: #f0f0f0;
+  --surface-sunken: #e9eef0;
+  --border: #e8e8e8;
+  --border-visible: #cccccc;
+  --text-disabled: #999999;
+  --text-secondary: #666666;
+  --text-primary: #1a1a1a;
+  --text-display: #000000;
+  --interactive: #007aff;
+  --window-bg: #f5f6f8;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-strong: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(17, 24, 39, 0.12);
+  --panel-bg: rgba(255, 255, 255, 0.82);
+  --panel-bg-raised: rgba(255, 255, 255, 0.94);
+  --control-bg: rgba(17, 24, 39, 0.045);
+  --control-bg-hover: rgba(17, 24, 39, 0.08);
+  --control-active: #111827;
+  --control-active-foreground: #ffffff;
+  --focus-ring: #006edb;
+  --dental-enamel: #f5f3ee;
+  --dental-metal: #2f3438;
+  --connector: #9b6b1c;
+
+  /* Bug-fix LOW#20 — light theme was inheriting accent / success / warning
+     from dark; lock to neutral light-mode values here. */
+  --accent: #0f9f86;
+  --accent-subtle: rgba(15, 159, 134, 0.12);
+  --success: #2e7d3c;
+  --success-foreground: #1f5128;
+  --warning: #b8860b;
+  --danger: #c83737;
+  --clinical-dicom: #2563eb;
+  --clinical-implant: #9a6a1f;
+  --clinical-cad: #197c6a;
+
+  --background: var(--black);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-primary);
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-raised);
+  --muted-foreground: var(--text-secondary);
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --input: var(--border-visible);
+  --ring: var(--interactive);
+  --chart-1: var(--accent);
+  --chart-2: var(--interactive);
+  --chart-3: var(--success);
+  --chart-4: var(--warning);
+  --chart-5: var(--text-secondary);
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: #111111;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--surface-raised);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--interactive);
+}
+
+@theme inline {
+  --color-black: var(--black);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border: var(--border);
+  --color-border-visible: var(--border-visible);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-display: var(--text-display);
+  --color-accent: var(--accent);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-violet: var(--accent-violet);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-interactive: var(--interactive);
+  --color-window-bg: var(--window-bg);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-bg-strong: var(--glass-bg-strong);
+  --color-glass-border: var(--glass-border);
+  --color-panel-bg: var(--panel-bg);
+  --color-panel-bg-raised: var(--panel-bg-raised);
+  --color-control-bg: var(--control-bg);
+  --color-control-bg-hover: var(--control-bg-hover);
+  --color-control-active: var(--control-active);
+  --color-control-active-foreground: var(--control-active-foreground);
+  --color-focus-ring: var(--focus-ring);
+  --color-dental-enamel: var(--dental-enamel);
+  --color-dental-metal: var(--dental-metal);
+  --color-connector: var(--connector);
+  --color-clinical-dicom: var(--clinical-dicom);
+  --color-clinical-implant: var(--clinical-implant);
+  --color-clinical-cad: var(--clinical-cad);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-display: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "Liberation Mono", Menlo, Consolas, monospace;
+
+  --spacing-2xs: var(--space-2xs);
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+  --spacing-3xl: var(--space-3xl);
+  --spacing-4xl: var(--space-4xl);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer utilities {
+  .tl-window {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--window-bg) 94%, var(--surface-raised) 6%), var(--window-bg));
+    color: var(--text-primary);
+  }
+
+  .tl-glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(18px) saturate(1.2);
+  }
+
+  .tl-panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .tl-control {
+    background: var(--control-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+  }
+
+  .tl-control:hover {
+    background: var(--control-bg-hover);
+  }
+
+  .tl-control-active {
+    background: var(--control-active);
+    border-color: var(--control-active);
+    color: var(--control-active-foreground);
+  }
+
+  .tl-focus-ring {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .tl-odontogram-stage {
+    background: var(--dental-enamel);
+    border: 1px solid color-mix(in srgb, var(--dental-metal) 18%, transparent);
+    color: var(--dental-metal);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 18px 44px rgba(0, 0, 0, 0.1);
+  }
+}

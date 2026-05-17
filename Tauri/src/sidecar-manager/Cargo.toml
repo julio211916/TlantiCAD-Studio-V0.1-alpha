@@ -1,0 +1,22 @@
+[package]
+name = "sidecar-manager"
+version = "0.1.0"
+edition = "2021"
+description = "Sidecar process manager for TlantiStudio - PostgreSQL, Python services"
+
+[dependencies]
+app_core = { package = "core", path = "../core" }
+
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+
+# Process management
+sysinfo = "0.32"
+
+# Port checking
+port_check = "0.2"

@@ -1,0 +1,12 @@
+[package]
+name = "agenda"
+version = "0.1.0"
+edition = "2021"
+description = "Agenda and scheduling services for TlantiStudio Dental"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+dental-database = { path = "../dental-database" }
+thiserror = "2.0"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.16", features = ["v4", "serde"] }

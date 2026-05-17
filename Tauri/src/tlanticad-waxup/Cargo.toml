@@ -1,0 +1,15 @@
+[package]
+name = "tlanticad-waxup"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD WaxUp Module"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }

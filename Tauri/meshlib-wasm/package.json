@@ -1,0 +1,17 @@
+{
+  "name": "@tlanti/meshlib-wasm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MeshLib WebAssembly bindings for TlantiCAD",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:wasm": "../vendor/build-meshlib-wasm.sh"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  }
+}

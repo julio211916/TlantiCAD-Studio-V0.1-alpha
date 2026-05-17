@@ -1,0 +1,46 @@
+[package]
+name = "tlanticad-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Core - Types and common functionality"
+rust-version.workspace = true
+
+[features]
+default = ["all-modules"]
+all-modules = [
+    "implant",
+    "crown",
+    "bridge", 
+    "bar",
+    "telescope",
+    "bite-splint",
+    "model",
+    "waxup",
+    "ai",
+]
+implant = []
+crown = []
+bridge = []
+bar = []
+telescope = []
+bite-splint = []
+model = []
+waxup = []
+ai = []
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+nalgebra = { workspace = true }
+hashbrown = { workspace = true }
+tokio = { workspace = true }
+sqlx = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true }

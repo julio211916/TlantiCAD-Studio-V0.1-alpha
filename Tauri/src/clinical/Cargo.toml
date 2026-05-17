@@ -1,0 +1,11 @@
+[package]
+name = "clinical"
+version = "0.1.0"
+edition = "2021"
+description = "Clinical services for TlantiStudio Dental"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+dental-database = { path = "../dental-database" }
+thiserror = "2.0"
+uuid = { version = "1.16", features = ["v4", "serde"] }

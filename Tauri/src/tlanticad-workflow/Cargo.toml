@@ -1,0 +1,16 @@
+[package]
+name = "tlanticad-workflow"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Workflow & Automation Module — S351-S400"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }

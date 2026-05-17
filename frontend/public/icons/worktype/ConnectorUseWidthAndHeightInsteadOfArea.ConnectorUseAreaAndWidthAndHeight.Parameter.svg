@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <title>ConnectorUseWidthAndHeightInsteadOfArea.ConnectorUseAreaAndWidthAndHeight.Parameter</title>
+  <path d="M2.7628664,4.4408921E-16 L3.5527135E-15,3.0458875 2.237321,3.0458875 2.237321,19.911634 3.5527135E-15,19.911634 2.7628664,22.957522 5.5257328,19.911634 3.2238451,19.911634 3.2238451,3.0458875 5.5257328,3.0458875 2.7628664,4.4408921E-16 z" fill="#FFFFFF" stroke-width="1.06952667"/>
+  <path d="M29,15 C29,22.731986 22.731986,29 15,29 C7.2680135,29 1,22.731986 1,15 C1,7.2680135 7.2680135,1 15,1 C22.731986,1 29,7.2680135 29,15 z" fill="currentColor" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M2.7628664,4.4408921E-16 L3.5527135E-15,3.0458875 2.237321,3.0458875 2.237321,19.911634 3.5527135E-15,19.911634 2.7628664,22.957522 5.5257328,19.911634 3.2238451,19.911634 3.2238451,3.0458875 5.5257328,3.0458875 2.7628664,4.4408921E-16 z" fill="#FFFFFF" stroke-width="1.06952667"/>
+  <path d="M0.58333333,16.166667 L30.666351,16.166667" fill="currentColor" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M2.9168291,16.166667 L28.332471,16.166667" fill="currentColor" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M2.3791265,16.166667 L28.780515,16.166667" fill="currentColor" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M2.3791265,16.166667 L28.780515,16.166667" fill="currentColor" stroke="#FFFFFF" stroke-width="2"/>
+</svg>

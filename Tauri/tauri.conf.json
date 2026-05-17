@@ -1,0 +1,57 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "TlantiCAD Studio",
+  "version": "0.1.0-alpha.1",
+  "identifier": "mx.tlantidentalstudio.tlanticad",
+  "build": {
+    "frontendDist": "../frontend/out",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeDevCommand": "cd frontend && bun run dev",
+    "beforeBuildCommand": "cd frontend && bun run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "TlantiCAD Studio",
+        "width": 1600,
+        "height": 960,
+        "minWidth": 960,
+        "minHeight": 620,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' ipc: http://ipc.localhost; connect-src 'self' ipc: http://ipc.localhost http://127.0.0.1:* ws://127.0.0.1:*; img-src 'self' asset: data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-ancestors 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "Medical",
+    "resources": [
+      "../frontend/public/Bitmaps/**/*",
+      "../frontend/public/Graphics/**/*",
+      "../frontend/public/icons/**/*",
+      "../frontend/public/images/**/*",
+      "../frontend/public/LayoutPhantoms/**/*",
+      "../frontend/public/PredefinedElements/**/*",
+      "icons/library/**/*",
+      "backend/python/**/*",
+      "resources/slicer/models/manifest.json",
+      "resources/slicer/extensions/SlicerAutomatedDentalTools/**/*",
+      "resources/slicer/runtime/Slicer.app/**/*"
+    ],
+    "shortDescription": "Dental CAD, DICOM and AI workstation built by TlantiDental Studio.",
+    "longDescription": "TlantiCAD Studio alpha 0.1 is a cross-platform dental CAD, medical imaging and AI-ready workstation for local-first workflows on macOS and Windows.",
+    "copyright": "© 2026 TlantiDental Studio. Todos los derechos reservados.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

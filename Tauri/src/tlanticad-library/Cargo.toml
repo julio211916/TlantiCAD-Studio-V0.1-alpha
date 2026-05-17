@@ -1,0 +1,20 @@
+[package]
+name = "tlanticad-library"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Library Manager - Access to dental libraries (implants, teeth, etc.)"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true }
+quick-xml = { version = "0.37", features = ["serialize"] }
+nalgebra = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"

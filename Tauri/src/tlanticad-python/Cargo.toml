@@ -1,0 +1,17 @@
+[package]
+name = "tlanticad-python"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+
+[features]
+default = []
+# Enable when Python is available: pyo3/auto-initialize
+pyo3-bridge = []

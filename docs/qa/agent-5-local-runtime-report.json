@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-05-01T18:23:21.133Z",
+  "strictCommandCoverage": true,
+  "strictChunks": false,
+  "results": [
+    {
+      "id": "offline-imports",
+      "label": "Offline imports",
+      "level": "pass",
+      "detail": "Owned DICOM/IA paths avoid remote APIs and generic backend origins.",
+      "evidence": []
+    },
+    {
+      "id": "http-capability-gates",
+      "label": "HTTP adapter capability gates",
+      "level": "pass",
+      "detail": "Generic HTTP adapters are explicit opt-in and loopback constrained.",
+      "evidence": []
+    },
+    {
+      "id": "cancellation",
+      "label": "Cancellation behavior",
+      "level": "pass",
+      "detail": "Cancellation failure is visible and the HTTP adapter no longer no-ops.",
+      "evidence": []
+    },
+    {
+      "id": "stub-markers",
+      "label": "Critical stub markers",
+      "level": "pass",
+      "detail": "No critical fake-success or TODO implementation markers found in owned paths.",
+      "evidence": []
+    },
+    {
+      "id": "command-coverage",
+      "label": "Tauri command coverage",
+      "level": "pass",
+      "detail": "Required DICOM/IA local commands are registered in the active Tauri invoke handler.",
+      "evidence": []
+    },
+    {
+      "id": "python-dicom-vtk-contract",
+      "label": "Python DICOM/VTK contract",
+      "level": "pass",
+      "detail": "Clinical DICOM fixture, VTK healthcheck and SlicerAutomatedDentalTools model downloader are explicitly owned locally.",
+      "evidence": []
+    },
+    {
+      "id": "chunks",
+      "label": "Frontend chunk budget",
+      "level": "warn",
+      "detail": "Next bundle budget failed or the fresh .next/out assets are missing.",
+      "evidence": [
+        "$ bun scripts/bundle-budget.ts",
+        "188 | }",
+        "189 | ",
+        "190 | function main() {",
+        "191 |   const chunksDir = existsSync(outChunksDir) ? outChunksDir : fallbackChunksDir;",
+        "192 |   if (!existsSync(chunksDir)) {",
+        "193 |     throw new Error('Next chunks not found. Run `bun run --cwd frontend build` before bundle:budget.');",
+        "                    ^",
+        "error: Next chunks not found. Run `bun run --cwd frontend build` before bundle:budget.",
+        "      at main (/Users/juliocesar/Desktop/TlantiCAD-Studio-V0.1-alpha/frontend/scripts/bundle-budget.ts:193:15)",
+        "      at /Users/juliocesar/Desktop/TlantiCAD-Studio-V0.1-alpha/frontend/scripts/bundle-budget.ts:230:1",
+        "      at loadAndEvaluateModule (2:1)",
+        "",
+        "Bun v1.3.11 (macOS arm64)",
+        "error: script \"bundle:budget\" exited with code 1"
+      ]
+    }
+  ]
+}

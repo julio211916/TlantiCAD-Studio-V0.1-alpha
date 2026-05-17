@@ -1,0 +1,47 @@
+[package]
+name = "dental-imaging"
+version = "0.1.0"
+edition = "2021"
+description = "Medical imaging (DICOM, STL, X-Ray, PACS networking) for TlantiStudio Dental"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+
+# DICOM parsing + networking (dicom-ul = SCP/SCU/DIMSE)
+dicom = { version = "0.9", features = ["ul", "image"] }
+dicom-object = "0.9"
+dicom-pixeldata = { version = "0.9", features = ["image"] }
+dicom-ul = { version = "0.9", features = ["async"] }
+dicom-dictionary-std = "0.9"
+
+# DICOMweb REST client (WADO-RS, STOW-RS, QIDO-RS)
+dicom-web = "0.3"
+
+# Orthanc PACS server client
+orthanc = "0.8"
+
+# STL 3D mesh parsing
+stl_io = "0.8"
+nom = "7"
+
+# Image processing
+image = "0.25"
+base64 = "0.22"
+
+# HTTP client (for dicom-web & orthanc)
+reqwest = { version = "0.12", features = ["json", "multipart", "stream"] }
+
+# Async
+tokio = { version = "1.45", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.16", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2.0"
+tracing = "0.1"
+
+# File handling
+tempfile = "3"
+walkdir = "2"

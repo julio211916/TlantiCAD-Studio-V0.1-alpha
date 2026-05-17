@@ -1,0 +1,31 @@
+[package]
+name = "commands"
+version = "0.1.0"
+edition = "2021"
+description = "Tauri commands for TlantiStudio"
+
+[dependencies]
+app_core = { package = "core", path = "../core" }
+database = { path = "../database" }
+sidecar-manager = { path = "../sidecar-manager" }
+meshlib-bridge = { path = "../meshlib-bridge" }
+ml-runtime = { path = "../ml-runtime" }
+python-bridge = { path = "../python-bridge" }
+
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+rusqlite.workspace = true
+ndarray.workspace = true
+
+# Tauri
+tauri = { version = "2.9.5" }
+
+# UUID
+uuid = { version = "1.17", features = ["v4", "serde"] }
+
+# System directories
+dirs = "5.0"

@@ -1,0 +1,17 @@
+[package]
+name = "tlanticad-geometry"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Geometry Engine - B-Rep and surface operations"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+nalgebra = { workspace = true }
+parry3d = { workspace = true }
+hashbrown = { workspace = true }
+rayon = { workspace = true }

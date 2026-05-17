@@ -1,0 +1,79 @@
+## TEMPLATE — futura raíz del workspace top-level (post-MP-014).
+##
+## NOTA: este archivo NO está activo aún. La raíz canónica sigue siendo
+## `src-tauri/crates/Cargo.toml`. Cuando se ejecute MP-014, este template se
+## convertirá en el `Cargo.toml` real, los crates se moverán aquí desde
+## `src-tauri/crates/*`, y `apps/desktop/src-tauri/Cargo.toml` los consumirá
+## con `path = "../../../crates/<name>"`.
+
+[workspace]
+resolver = "2"
+members = [
+    "tlanticad-core",
+    "tlanticad-geometry",
+    "tlanticad-mesh",
+    "tlanticad-csg",
+    "tlanticad-formats",
+    "tlanticad-crown",
+    "tlanticad-abutment",
+    "tlanticad-bridge",
+    "tlanticad-implant",
+    "tlanticad-articulator",
+    "tlanticad-endo",
+    "tlanticad-freeform",
+    "tlanticad-dicom",
+    "tlanticad-ai",
+    "tlanticad-compute",
+    "tlanticad-project",
+    "tlanticad-rendering",
+    "tlanticad-wasm",
+    "tlanticad-occt",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+rust-version = "1.88"
+
+[workspace.dependencies]
+# Internal crates (path-based dentro del workspace)
+tlanticad-core       = { path = "tlanticad-core" }
+tlanticad-geometry   = { path = "tlanticad-geometry" }
+tlanticad-mesh       = { path = "tlanticad-mesh" }
+tlanticad-csg        = { path = "tlanticad-csg" }
+tlanticad-formats    = { path = "tlanticad-formats" }
+tlanticad-crown      = { path = "tlanticad-crown" }
+tlanticad-abutment   = { path = "tlanticad-abutment" }
+tlanticad-bridge     = { path = "tlanticad-bridge" }
+tlanticad-implant    = { path = "tlanticad-implant" }
+tlanticad-articulator = { path = "tlanticad-articulator" }
+tlanticad-endo       = { path = "tlanticad-endo" }
+tlanticad-freeform   = { path = "tlanticad-freeform" }
+tlanticad-dicom      = { path = "tlanticad-dicom" }
+tlanticad-ai         = { path = "tlanticad-ai" }
+tlanticad-compute    = { path = "tlanticad-compute" }
+tlanticad-project    = { path = "tlanticad-project" }
+tlanticad-rendering  = { path = "tlanticad-rendering" }
+
+# External (heredadas del workspace actual)
+serde       = { version = "1", features = ["derive"] }
+serde_json  = "1"
+thiserror   = "2"
+anyhow      = "1"
+tracing     = "0.1"
+nalgebra    = { version = "0.34", features = ["serde-serialize"] }
+rayon       = "1.10"
+chrono      = { version = "0.4", features = ["serde"] }
+uuid        = { version = "1", features = ["v4", "serde"] }
+hashbrown   = "0.15"
+rstar       = "0.12"
+tokio       = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "fs"] }
+
+## Reglas de migración (MP-014):
+##   1. `git mv src-tauri/crates/<name>` → `crates/<name>` para cada miembro listado.
+##   2. Renombrar este archivo a `Cargo.toml`.
+##   3. Borrar `[workspace]` actual de `src-tauri/crates/Cargo.toml`.
+##   4. Ajustar `apps/desktop/src-tauri/Cargo.toml` deps a paths relativos
+##      `../../../crates/<name>`.
+##   5. `cargo check` desde la raíz: debe compilar todo.

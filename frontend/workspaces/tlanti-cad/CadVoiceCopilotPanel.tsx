@@ -1,0 +1,1 @@
+export { CadVoiceCopilotPanel } from '@/features/voice-copilot/components/CadVoiceCopilotPanel';

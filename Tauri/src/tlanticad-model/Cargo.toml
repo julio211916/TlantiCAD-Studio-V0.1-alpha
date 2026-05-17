@@ -1,0 +1,14 @@
+[package]
+name = "tlanticad-model"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Model Creator Module"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }
+uuid = { workspace = true }

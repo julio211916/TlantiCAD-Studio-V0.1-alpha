@@ -1,0 +1,15 @@
+[package]
+name = "tlanticad-abutment"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Abutment Design Module - Custom abutment generation"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+tlanticad-geometry = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+nalgebra = { workspace = true }

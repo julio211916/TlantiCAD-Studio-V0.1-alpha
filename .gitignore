@@ -1,0 +1,36 @@
+node_modules/
+bun.lockb
+dist/
+target/
+.DS_Store
+
+# Frontend build
+frontend/dist/
+frontend/.next/
+
+# Rust build artifacts
+Tauri/src/target/
+Tauri/target/
+
+# Python venv / cache
+Tauri/backend/.venv/
+Tauri/backend/tlanti_server/
+Tauri/backend/__pycache__/
+__pycache__/
+
+# Large assets (downloadable/generable)
+Tauri/icons/
+Tauri/library/
+Tauri/tools/
+Tauri/wasm/
+Tauri/resources/slicer/
+
+# Embedded git repo (use submodule)
+Tauri/meshlib/
+
+# CAD patient data (not source)
+CAD-Data/
+
+# Dev-generated
+*.tsbuildinfo
+tsconfig.tsbuildinfo

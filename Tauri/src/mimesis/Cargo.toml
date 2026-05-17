@@ -1,0 +1,21 @@
+[package]
+name = "mimesis"
+version = "0.1.0"
+edition = "2021"
+description = "3D mesh generation from 2D images — contour tracing, polygon extrusion, OBJ export"
+
+[dependencies]
+image = { version = "0.25", default-features = false, features = [
+    "png",
+    "jpeg",
+    "bmp",
+    "tiff",
+] }
+earcutr = "0.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+tracing = "0.1"
+
+[features]
+default = []

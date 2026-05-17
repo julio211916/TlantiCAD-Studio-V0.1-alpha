@@ -1,0 +1,15 @@
+[package]
+name = "tlanticad-articulator"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Articulator — Bonwill triangle, jaw motion, registration, planes tool. AR-V377."
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }

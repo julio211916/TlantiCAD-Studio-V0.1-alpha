@@ -1,0 +1,89 @@
+/**
+ * CAD top dock — toolbar at the top of the workbench.
+ *
+ * Tokens used (avoid magic colors): --accent-violet, --success-foreground,
+ * --text-display, --black.
+ */
+
+.cad-top-dock {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(25, 27, 31, 0.94), rgba(14, 15, 18, 0.9));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+  padding: 8px 10px;
+  backdrop-filter: blur(18px);
+}
+
+.cad-top-scroll {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.cad-top-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cad-top-icon-button {
+  display: inline-flex;
+  min-width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  overflow: hidden;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(232, 236, 242, 0.68);
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.cad-top-icon-button:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--text-display);
+}
+
+.cad-top-icon-button-active {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: var(--text-display);
+  color: #090b0f;
+}
+
+.cad-top-icon-button-accent {
+  border-color: color-mix(in srgb, var(--accent-violet) 62%, transparent);
+  background: color-mix(in srgb, var(--accent-violet) 22%, transparent);
+  color: var(--text-display);
+}
+
+.cad-top-icon-button-success {
+  border-color: color-mix(in srgb, var(--success) 48%, transparent);
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  color: var(--success-foreground);
+}
+
+@media (max-width: 920px) {
+  .cad-top-dock {
+    grid-template-columns: 1fr auto;
+  }
+
+  .cad-top-scroll {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}

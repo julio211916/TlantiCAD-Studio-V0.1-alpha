@@ -1,0 +1,15 @@
+[package]
+name = "tlanticad-dental"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+tlanticad-geometry = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+nalgebra = { workspace = true }
+hashbrown = { workspace = true }
+dental-notation = { workspace = true }
+uuid = { workspace = true }

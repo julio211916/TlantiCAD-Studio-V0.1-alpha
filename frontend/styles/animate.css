@@ -1,0 +1,96 @@
+/**
+ * Minimal TlantiCAD animation utilities.
+ *
+ * Replaces the full external animation import because Next 16/Webpack cssnano
+ * can fail on generated Tailwind v4 CSS during production builds.
+ */
+
+@keyframes tlanti-enter {
+  from {
+    opacity: var(--tlanti-enter-opacity, 1);
+    transform:
+      translate3d(var(--tlanti-enter-x, 0), var(--tlanti-enter-y, 0), 0)
+      scale(var(--tlanti-enter-scale, 1));
+  }
+}
+
+@keyframes tlanti-exit {
+  to {
+    opacity: var(--tlanti-exit-opacity, 1);
+    transform:
+      translate3d(var(--tlanti-exit-x, 0), var(--tlanti-exit-y, 0), 0)
+      scale(var(--tlanti-exit-scale, 1));
+  }
+}
+
+@utility animate-in {
+  animation: tlanti-enter var(--tw-duration, 150ms) ease-out both;
+}
+
+@utility animate-out {
+  animation: tlanti-exit var(--tw-duration, 150ms) ease-in both;
+}
+
+@utility fade-in-0 {
+  --tlanti-enter-opacity: 0;
+}
+
+@utility fade-out-0 {
+  --tlanti-exit-opacity: 0;
+}
+
+@utility zoom-in-95 {
+  --tlanti-enter-scale: 0.95;
+}
+
+@utility zoom-out-95 {
+  --tlanti-exit-scale: 0.95;
+}
+
+@utility slide-in-from-top {
+  --tlanti-enter-y: -100%;
+}
+
+@utility slide-in-from-bottom {
+  --tlanti-enter-y: 100%;
+}
+
+@utility slide-in-from-left {
+  --tlanti-enter-x: -100%;
+}
+
+@utility slide-in-from-right {
+  --tlanti-enter-x: 100%;
+}
+
+@utility slide-out-to-top {
+  --tlanti-exit-y: -100%;
+}
+
+@utility slide-out-to-bottom {
+  --tlanti-exit-y: 100%;
+}
+
+@utility slide-out-to-left {
+  --tlanti-exit-x: -100%;
+}
+
+@utility slide-out-to-right {
+  --tlanti-exit-x: 100%;
+}
+
+@utility slide-in-from-top-2 {
+  --tlanti-enter-y: -0.5rem;
+}
+
+@utility slide-in-from-bottom-2 {
+  --tlanti-enter-y: 0.5rem;
+}
+
+@utility slide-in-from-left-2 {
+  --tlanti-enter-x: -0.5rem;
+}
+
+@utility slide-in-from-right-2 {
+  --tlanti-enter-x: 0.5rem;
+}

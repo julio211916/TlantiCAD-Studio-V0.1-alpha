@@ -1,0 +1,92 @@
+import JSZip from 'jszip';
+import { useDatasetStore } from '@/src/store/datasets';
+import { useSegmentGroupStore } from '@/src/store/segmentGroups';
+import { useLayersStore } from '@/src/store/datasets-layers';
+import { useToolStore } from '@/src/store/tools';
+import { Tools } from '@/src/store/tools/types';
+import { useViewStore } from '@/src/store/views';
+import { Manifest, ManifestSchema } from '@/src/io/state-file/schema';
+
+import { retypeFile } from '@/src/io';
+import { ARCHIVE_FILE_TYPES } from '@/src/io/mimeTypes';
+import { migrateManifest } from '@/src/io/state-file/migrations';
+import { useViewConfigStore } from '@/src/store/view-configs';
+
+export const MANIFEST = 'manifest.json';
+export const MANIFEST_VERSION = '6.2.0';
+
+export async function serialize() {
+  const datasetStore = useDatasetStore();
+  const viewStore = useViewStore();
+  const labelStore = useSegmentGroupStore();
+  const toolStore = useToolStore();
+  const layersStore = useLayersStore();
+
+  const zip = new JSZip();
+  const manifest: Manifest = {
+    version: MANIFEST_VERSION,
+    datasets: [],
+    dataSources: [],
+    datasetFilePath: {},
+    segmentGroups: [],
+    tools: {
+      crosshairs: {
+        position: [0, 0, 0],
+      },
+      paint: {
+        activeSegmentGroupID: null,
+        activeSegment: null,
+        brushSize: 8,
+        crossPlaneSync: false,
+      },
+      crop: {},
+      current: Tools.WindowLevel,
+    },
+    layout: {
+      direction: 'column',
+      items: [],
+    },
+    layoutSlots: [],
+    viewByID: {},
+    isActiveViewMaximized: false,
+    parentToLayers: [],
+  };
+
+  const stateFile = {
+    zip,
+    manifest,
+  };
+
+  await datasetStore.serialize(stateFile);
+  viewStore.serialize(stateFile);
+  await useViewConfigStore().serialize(stateFile);
+  await labelStore.serialize(stateFile);
+  toolStore.serialize(stateFile);
+  await layersStore.serialize(stateFile);
+
+  zip.file(MANIFEST, JSON.stringify(manifest));
+
+  return zip.generateAsync({ type: 'blob' });
+}
+
+export async function isStateFile(file: File) {
+  const typedFile = await retypeFile(file);
+
+  if (ARCHIVE_FILE_TYPES.has(typedFile.type)) {
+    const zip = await JSZip.loadAsync(typedFile);
+    return zip.file(MANIFEST) !== null;
+  }
+
+  if (typedFile.type === 'application/json') {
+    try {
+      const text = await file.text();
+      const migrated = migrateManifest(text);
+      ManifestSchema.parse(migrated);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  return false;
+}

@@ -1,0 +1,32 @@
+[package]
+name = "database"
+version = "0.1.0"
+edition = "2021"
+description = "Database layer for TlantiStudio - SQLite and PostgreSQL"
+
+[dependencies]
+app_core = { package = "core", path = "../core" }
+
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+
+# SQLite
+rusqlite.workspace = true
+
+# PostgreSQL (async)
+sqlx = { workspace = true }
+
+# Connection pooling
+r2d2 = "0.8"
+r2d2_sqlite = "0.24"
+
+# Date/time
+chrono = { version = "0.4", features = ["serde"] }
+
+# UUID
+uuid = { version = "1.17", features = ["v4", "serde"] }

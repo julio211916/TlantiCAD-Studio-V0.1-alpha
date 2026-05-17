@@ -1,0 +1,35 @@
+[package]
+name = "tlanticad-compute"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Compute — unified CPU/GPU/NPU backend trait + ComputeRouter selector. MP-101 → MP-110."
+
+[features]
+default = ["cpu-rayon"]
+cpu-rayon = ["dep:rayon"]
+gpu-wgpu = ["dep:wgpu", "dep:bytemuck", "dep:pollster"]
+gpu-cuda = []      # opt-in: requires `cust` crate + nvidia toolchain
+gpu-metal = []     # opt-in: requires `metal-rs` on macOS
+ane-coreml = []    # opt-in: requires `objc2` + CoreML on Apple Silicon
+trt-tensorrt = []  # opt-in: requires NVIDIA TensorRT installed
+rocm-amd = []      # opt-in: AMD ROCm on Linux
+directml-npu = []  # opt-in: Windows DirectML for AMD/Intel NPUs
+all-cpu = ["cpu-rayon"]
+
+[dependencies]
+tlanticad-mesh = { path = "../tlanticad-mesh" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+nalgebra = { workspace = true }
+chrono = { workspace = true }
+
+# CPU
+rayon = { workspace = true, optional = true }
+
+# wgpu (optional)
+wgpu = { version = "22", optional = true }
+bytemuck = { version = "1", features = ["derive"], optional = true }
+pollster = { version = "0.4", optional = true }

@@ -1,0 +1,12 @@
+[package]
+name = "tlanticad-alignment"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD mesh alignment and registration engine"
+
+[dependencies]
+tlanticad-mesh = { workspace = true }
+serde = { workspace = true }
+nalgebra = { workspace = true }

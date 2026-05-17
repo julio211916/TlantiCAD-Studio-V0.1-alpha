@@ -1,0 +1,27 @@
+[package]
+name = "python-bridge"
+version = "0.1.0"
+edition = "2021"
+description = "Python sidecar bridge using PyO3 for TlantiStudio"
+
+[dependencies]
+app_core = { package = "core", path = "../core" }
+
+uuid.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+
+# PyO3 for Python integration (optional)
+pyo3 = { version = "0.22", optional = true, features = ["auto-initialize"] }
+
+# Process management
+subprocess = "0.2"
+
+[features]
+default = []
+pyo3 = ["dep:pyo3"]

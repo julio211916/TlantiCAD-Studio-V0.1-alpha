@@ -1,0 +1,24 @@
+[package]
+name = "core"
+version = "0.1.0"
+edition = "2021"
+description = "Core logic and utilities for TlantiStudio"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+crossbeam-channel.workspace = true
+
+# UUID for unique identifiers
+uuid = { version = "1.17", features = ["v4", "serde"] }
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Configuration
+config = "0.15"

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="32.000" height="32.000" viewBox="0 0 32.000 32.000">
+  <title>PartialMeshProfile.None.Parameter</title>
+  <path d="F1 M 32.000,32.000 L 0.000,32.000 L 0.000,0.000 L 32.000,0.000 L 32.000,32.000 Z" fill="currentColor"/>
+  <path d="F1 M 29.609,15.784 C 29.609,23.178 23.615,29.172 16.221,29.172 C 8.827,29.172 2.833,23.178 2.833,15.784 C 2.833,8.389 8.827,2.395 16.221,2.395 C 23.615,2.395 29.609,8.389 29.609,15.784 Z" fill="currentColor" stroke="#fffeff" stroke-width="2.3"/>
+  <path d="F1 M 6.891,6.214 L 25.551,25.353" fill="currentColor" stroke="#fffeff" stroke-width="2.3"/>
+</svg>

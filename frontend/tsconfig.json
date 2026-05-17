@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["node", "react", "react-dom"],
+    "typeRoots": ["./node_modules/@types", "../node_modules/@types"],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/tlantidb/*": ["workspaces/tlanti-db/*"],
+      "@/components/asset-library/*": ["workspaces/tlanti-cad/asset-library/*"],
+      "@/components/workspaces/*": ["workspaces/*"],
+      "@/components/cad/*": ["workspaces/tlanti-cad/*"],
+      "@/components/ui/*": ["ui/*"],
+      "@tlanticad/ui": ["ui/tlanticad-ui.tsx"],
+      "@/features/*": ["workspaces/tlanti-cad/features/*"],
+      "@/providers/*": ["providers/*"],
+      "@/platform/*": ["platform/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/stores/*": ["stores/*"],
+      "@/core": ["core/index.ts"],
+      "@/core/*": ["core/*"],
+      "@/types": ["types/index.ts"],
+      "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"],
+      "@/lib/*": ["lib/*"],
+      "@/*": ["*"]
+    },
+    "incremental": true,
+    "plugins": [{ "name": "next" }]
+  },
+  "include": [
+    "app",
+    "App.tsx",
+    "runtime",
+    "types/**/*.d.ts",
+    "next-env.d.ts",
+    "scripts/recovery-gate.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__tests__/**",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/Copia de *"
+  ]
+}

@@ -1,0 +1,27 @@
+/**
+ * Cross-browser scrollbar treatment. WebKit gets a thin track; Firefox gets
+ * the standard `scrollbar-width` + `scrollbar-color` (Bug-fix LOW#24).
+ */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-visible) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-visible);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-disabled);
+}

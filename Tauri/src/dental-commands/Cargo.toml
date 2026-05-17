@@ -1,0 +1,39 @@
+[package]
+name = "dental-commands"
+version = "0.1.0"
+edition = "2021"
+description = "Tauri IPC Commands for TlantiStudio Dental"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+dental-database = { path = "../dental-database" }
+
+# Service crates
+accounting = { path = "../accounting" }
+agenda = { path = "../agenda" }
+clinical = { path = "../clinical" }
+patients = { path = "../patients" }
+pos = { path = "../pos" }
+
+# Imaging, export, system crates
+dental-imaging = { path = "../dental-imaging" }
+dental-export = { path = "../dental-export" }
+system-info = { path = "../system-info" }
+mimesis = { path = "../mimesis" }
+image = { version = "0.25", default-features = false, features = [
+    "png",
+    "jpeg",
+] }
+reqwest = { version = "0.12", features = ["json"] }
+
+tauri = { version = "2.9", features = ["tray-icon"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+uuid = { version = "1.16", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+rust_decimal = { version = "1.37", features = ["serde"] }
+tracing = "0.1"
+tokio = { version = "1.45", features = ["sync"] }
+parking_lot = "0.12"
+sha2 = "0.10"

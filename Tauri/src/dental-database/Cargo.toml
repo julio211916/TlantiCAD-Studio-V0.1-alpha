@@ -1,0 +1,19 @@
+[package]
+name = "dental-database"
+version = "0.1.0"
+edition = "2021"
+description = "Database layer for TlantiStudio Dental Clinic Management"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+
+rusqlite = { workspace = true }
+r2d2 = "0.8"
+r2d2_sqlite = "0.24"
+thiserror = "2.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.16", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+rust_decimal = { version = "1.37", features = ["serde"] }
+tracing = "0.1"

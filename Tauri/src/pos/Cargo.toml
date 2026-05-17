@@ -1,0 +1,13 @@
+[package]
+name = "pos"
+version = "0.1.0"
+edition = "2021"
+description = "Point of Sale services for TlantiStudio Dental"
+
+[dependencies]
+dental-core = { path = "../dental-core" }
+dental-database = { path = "../dental-database" }
+thiserror = "2.0"
+rust_decimal = { version = "1.37", features = ["serde"] }
+uuid = { version = "1.16", features = ["v4", "serde"] }
+serde = { version = "1.0", features = ["derive"] }

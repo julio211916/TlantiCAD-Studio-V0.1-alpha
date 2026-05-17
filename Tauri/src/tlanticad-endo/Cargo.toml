@@ -1,0 +1,15 @@
+[package]
+name = "tlanticad-endo"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Endo — endo crown preparation, canal insertion direction, post-and-core. AR-V378."
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+tlanticad-geometry = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }

@@ -1,0 +1,402 @@
+import * as path from 'path';
+import * as fs from 'fs';
+import { Key, type ChainablePromiseElement } from 'webdriverio';
+import { cleanuptotal } from 'wdio-cleanuptotal-service';
+import { DOWNLOAD_TIMEOUT, TEMP_DIR } from '../../wdio.shared.conf';
+import Page from './page';
+
+let lastId = 0;
+const getId = () => {
+  return `${process.pid}-${Date.now()}-${lastId++}`;
+};
+
+export const setValueVueInput = async (
+  input: ChainablePromiseElement,
+  value: string
+) => {
+  // input.setValue does not clear existing input, so select all and replace.
+  await input.click();
+  const oldValue = await input.getValue();
+  if (oldValue) {
+    const selectAllModifier =
+      process.platform === 'darwin' ? 'Meta' : 'Control';
+    await browser.keys([selectAllModifier, 'a']);
+    await browser.keys(Key.Backspace);
+  }
+  await input.setValue(value);
+};
+
+class VolViewPage extends Page {
+  get samplesList() {
+    return $('div[data-testid="samples-list"]');
+  }
+
+  get prostateSample() {
+    return this.samplesList.$('div[title="MRI PROSTATEx"]');
+  }
+
+  async downloadProstateSample() {
+    const sample = await this.prostateSample;
+    await sample.click();
+  }
+
+  get views() {
+    return $$('div[data-testid~="vtk-view"] canvas');
+  }
+
+  get layoutButton() {
+    return $('button[data-testid="control-button-Layouts"]');
+  }
+
+  get layoutMenuItems() {
+    return $$('.v-list-item');
+  }
+
+  async waitForViews(timeout = DOWNLOAD_TIMEOUT) {
+    await browser.waitUntil(
+      async () => {
+        return browser.execute(() => {
+          const canvases = document.querySelectorAll(
+            'div[data-testid~="vtk-view"] canvas'
+          );
+          return Array.from(canvases).some((c) => {
+            const canvas = c as HTMLCanvasElement;
+            return canvas.width > 10 && canvas.height > 10;
+          });
+        });
+      },
+      {
+        timeout,
+        timeoutMsg: `expected at least 1 view to be rendered with real dimensions (timeout: ${timeout}ms)`,
+      }
+    );
+  }
+
+  get notifications() {
+    return $('#notifications');
+  }
+
+  async getNotificationsCount() {
+    const badge = this.notifications.$('span[aria-label="Badge"]');
+    const innerText = await badge.getText();
+    if (innerText === '') return 0;
+    return parseInt(innerText, 10);
+  }
+
+  async waitForNotification() {
+    await browser.waitUntil(
+      async () => {
+        const notificationCount = await this.getNotificationsCount();
+        return notificationCount >= 1;
+      },
+      {
+        timeout: DOWNLOAD_TIMEOUT,
+        timeoutMsg: `expected notification badge to display`,
+      }
+    );
+  }
+
+  get rectangleButton() {
+    return $('button span i[class~=mdi-vector-square]');
+  }
+
+  async activateRectangle() {
+    const button = this.rectangleButton;
+    await button.click();
+  }
+
+  get paintButton() {
+    return $('button span i[class~=mdi-brush]');
+  }
+
+  async activatePaint() {
+    const button = this.paintButton;
+    await button.click();
+  }
+
+  get viewTwoContainer() {
+    return $('div[data-testid~="two-view-container"]');
+  }
+
+  get saveButton() {
+    return $('button span i[class~=mdi-content-save-all]');
+  }
+
+  get annotationsModuleTab() {
+    return $('button[data-testid="module-tab-Annotations"]');
+  }
+
+  get newSegmentGroupButton() {
+    return $('button*=New Group');
+  }
+
+  get activeDialog() {
+    return $('div[role="dialog"]');
+  }
+
+  get activeDialogInput() {
+    return this.activeDialog.$('input[placeholder="Unnamed Segment Group"]');
+  }
+
+  get saveSessionFilenameInput() {
+    return $('#session-state-filename');
+  }
+
+  get saveSessionConfirmButton() {
+    return $('span[data-testid="save-session-confirm-button"]');
+  }
+
+  get segmentGroupsTab() {
+    return $('button.v-tab*=Segment Groups');
+  }
+
+  get segmentGroupSaveButtons() {
+    return $$('button[data-testid="segment-group-save-button"]');
+  }
+
+  get saveSegmentGroupFilenameInput() {
+    return this.activeDialog.$('#filename');
+  }
+
+  get saveSegmentGroupConfirmButton() {
+    return this.activeDialog.$('button=Save');
+  }
+
+  async clickFirstSegmentGroupSaveButton() {
+    await browser.waitUntil(async () => {
+      const buttons = await this.segmentGroupSaveButtons;
+      return (await buttons.length) >= 1;
+    });
+    const buttons = await this.segmentGroupSaveButtons;
+    await buttons[0].scrollIntoView();
+    await buttons[0].waitForClickable();
+    await buttons[0].click();
+  }
+
+  async saveSession() {
+    const save = this.saveButton;
+    await save.click();
+
+    const input = this.saveSessionFilenameInput;
+    const id = getId();
+    const fileName = `${id}-session.volview.zip`;
+
+    await setValueVueInput(input, fileName);
+
+    const confirm = this.saveSessionConfirmButton;
+    await confirm.click();
+
+    cleanuptotal.addCleanup(async () => {
+      const filePath = path.join(TEMP_DIR, fileName);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    });
+
+    return fileName;
+  }
+
+  async createSegmentGroup(name: string) {
+    const annotationsTab = await this.annotationsModuleTab;
+    await annotationsTab.click();
+
+    const newGroup = await this.newSegmentGroupButton;
+    await newGroup.waitForClickable();
+    await newGroup.click();
+
+    const input = await this.activeDialogInput;
+    await input.waitForDisplayed();
+    await setValueVueInput(input, name);
+    await browser.keys([Key.Enter]);
+  }
+
+  get editLabelButtons() {
+    return $$('button[data-testid="edit-label-button"]');
+  }
+
+  get labelStrokeWidthInput() {
+    // there should only be one on the screen at any given time
+    return $('.label-stroke-width-input').$('input');
+  }
+
+  get editLabelModalDoneButton() {
+    return $('button[data-testid="edit-label-done-button"]');
+  }
+
+  get datasetMenuButtons() {
+    return $$('button[data-testid="dataset-menu-button"]');
+  }
+
+  get renderingModuleTab() {
+    return $('button[data-testid="module-tab-Rendering"]');
+  }
+
+  get layerOpacitySliders() {
+    return $$('div[data-testid="layer-opacity-slider"]');
+  }
+
+  async getVolumeRenderingSection() {
+    const pwfEditor = await $('div.pwf-editor');
+    const exists = await pwfEditor.isExisting();
+    return exists ? pwfEditor : null;
+  }
+
+  async getView3D() {
+    const view3D = $('div[data-testid="vtk-view vtk-volume-view"]');
+    const exists = await view3D.isExisting();
+    return exists ? view3D : null;
+  }
+
+  async getView2D() {
+    const view2D = $('div[data-testid="vtk-view vtk-two-view"]');
+    const exists = await view2D.isExisting();
+    return exists ? view2D : null;
+  }
+
+  async getViews2D() {
+    const views2D = $$('div[data-testid="vtk-view vtk-two-view"]');
+    return views2D;
+  }
+
+  async waitForViewCounts(
+    expected2DCount: number,
+    expected3DExists: boolean,
+    timeout = DOWNLOAD_TIMEOUT
+  ) {
+    await browser.waitUntil(
+      async () => {
+        const counts = await browser.execute(() => ({
+          view2DCount: document.querySelectorAll(
+            'div[data-testid="vtk-view vtk-two-view"]'
+          ).length,
+          view3DExists:
+            document.querySelector(
+              'div[data-testid="vtk-view vtk-volume-view"]'
+            ) !== null,
+        }));
+        return (
+          counts.view2DCount === expected2DCount &&
+          counts.view3DExists === expected3DExists
+        );
+      },
+      {
+        timeout,
+        timeoutMsg: `Expected ${expected2DCount} 2D views and ${
+          expected3DExists ? 'a' : 'no'
+        } 3D view`,
+      }
+    );
+  }
+
+  async openLayoutMenu(minOptionCount = 1) {
+    const button = await this.layoutButton;
+    await browser.waitUntil(async () => button.isDisplayed(), {
+      timeout: 5000,
+      timeoutMsg: 'Layout button not displayed',
+      interval: 500,
+    });
+    await button.click();
+
+    await browser.waitUntil(
+      async () => {
+        const items = await this.layoutMenuItems;
+        const itemCount = await items.length;
+        return itemCount >= minOptionCount;
+      },
+      {
+        timeout: 5000,
+        timeoutMsg: `Expected layout menu to show at least ${minOptionCount} layout options`,
+        interval: 500,
+      }
+    );
+  }
+
+  async getLayoutOptionTitles() {
+    return browser.execute((titleSelector: string) => {
+      const items = Array.from(document.querySelectorAll(titleSelector));
+      return items.map((item) => item.textContent?.trim() ?? '');
+    }, '.v-list-item-title');
+  }
+
+  async selectLayoutOption(targetText: string) {
+    await browser.execute(
+      (text: string, titleSelector: string) => {
+        const items = Array.from(document.querySelectorAll(titleSelector));
+        const targetItem = items.find(
+          (item) => item.textContent?.trim() === text
+        );
+        if (!targetItem) return;
+        const listItem = targetItem.closest(
+          '.v-list-item'
+        ) as HTMLElement | null;
+        listItem?.click();
+      },
+      targetText,
+      '.v-list-item-title'
+    );
+  }
+
+  async focusFirst2DView() {
+    const views = await this.getViews2D();
+    const viewCount = await views.length;
+    if (!viewCount) {
+      throw new Error('No 2D views rendered to focus');
+    }
+
+    const firstView = views[0];
+    const canvas = await firstView.$('canvas');
+    await canvas.scrollIntoView();
+    await canvas.click();
+  }
+
+  async getFirst2DSlice() {
+    return browser.execute((selector: string) => {
+      const views = document.querySelectorAll(selector);
+      if (views.length === 0) return null;
+      const overlayText = views[0].textContent;
+      const match = overlayText?.match(/Slice:\s*(\d+)/);
+      return match ? parseInt(match[1], 10) : null;
+    }, 'div[data-testid="vtk-view vtk-two-view"]');
+  }
+
+  async waitForSliceDecrease(initialSlice: number | null) {
+    await browser.waitUntil(
+      async () => {
+        const currentSlice = await this.getFirst2DSlice();
+        if (initialSlice === null) {
+          return currentSlice !== null;
+        }
+        return currentSlice !== null && currentSlice < initialSlice;
+      },
+      {
+        timeoutMsg: 'Expected slice to decrease after advancing',
+      }
+    );
+  }
+
+  async advanceSliceAndWait() {
+    const initialSlice = await this.getFirst2DSlice();
+    await browser.keys([Key.ArrowDown]);
+    await this.waitForSliceDecrease(initialSlice);
+  }
+
+  async waitForLoadingIndicator(
+    view: ChainablePromiseElement,
+    timeout = DOWNLOAD_TIMEOUT
+  ) {
+    await browser.waitUntil(
+      async () => {
+        const loadingIndicator = await view.$('.loading-indicator');
+        return !(await loadingIndicator.isDisplayed());
+      },
+      {
+        timeout,
+        timeoutMsg: 'Expected loading indicator to disappear',
+      }
+    );
+  }
+}
+
+export const volViewPage = new VolViewPage();
+
+export default volViewPage;

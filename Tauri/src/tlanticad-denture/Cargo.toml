@@ -1,0 +1,13 @@
+[package]
+name = "tlanticad-denture"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Denture — duplicate denture margin + tooth segmentation. AR-V399."
+
+[dependencies]
+tlanticad-core = { workspace = true }
+tlanticad-mesh = { workspace = true }
+nalgebra = { workspace = true }
+serde = { workspace = true }

@@ -1,0 +1,27 @@
+[package]
+name = "ml-runtime"
+version = "0.1.0"
+edition = "2021"
+description = "ML Runtime for TlantiStudio - ONNX, PyTorch, CNN support"
+
+[dependencies]
+app_core = { package = "core", path = "../core" }
+
+uuid.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+ndarray.workspace = true
+
+# ONNX Runtime
+ort.workspace = true
+
+# Image processing for CNN inputs
+image = "0.25"
+
+# Half precision floats
+half = "2.4"

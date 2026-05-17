@@ -1,0 +1,27 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop-core",
+  "description": "Core desktop permissions for TlantiCAD main and workspace windows.",
+  "windows": [
+    "main",
+    "tlanticad-*",
+    "tlantidb-*"
+  ],
+  "permissions": [
+    "core:default",
+    "core:window:allow-create",
+    "core:webview:allow-create-webview-window",
+    "dialog:default",
+    "fs:default",
+    "opener:default",
+    "os:default",
+    "process:default",
+    "shell:default",
+    "sql:default",
+    "store:default",
+    "http:default",
+    "clipboard-manager:default",
+    "notification:default",
+    "window-state:default"
+  ]
+}

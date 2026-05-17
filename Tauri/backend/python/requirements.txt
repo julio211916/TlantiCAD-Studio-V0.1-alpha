@@ -1,0 +1,13 @@
+fastapi==0.115.6
+pydantic==2.10.4
+pydantic-settings==2.7.1
+sqlmodel==0.0.22
+alembic==1.14.0
+uvicorn[standard]==0.34.0
+celery==5.4.0
+redis==5.2.1
+pydicom==3.0.2
+vtk==9.3.1
+SimpleITK==2.4.0
+onnxruntime==1.19.2
+numpy==2.0.2

@@ -1,0 +1,51 @@
+/**
+ * TlantiCAD Studio — global stylesheet entry point.
+ *
+ * V173 modular split — `globals.css` is now an orchestrator. Concerns are
+ * split into focused modules:
+ *
+ *   tokens.css                — design tokens (palette, spacing, radii, fonts)
+ *   base.css                  — resets + body/root chrome
+ *   scrollbar.css             — cross-browser thin scrollbar
+ *   components/cad-dock.css   — top toolbar dock
+ *   components/cad-rail.css   — left/right vertical sculpt rails
+ *
+ * NEW component-level styles must go into their own module under
+ * `components/<feature>.css`, NOT here. Keeping this file at <60 lines is the
+ * convention.
+ */
+
+@import "tailwindcss";
+@import "./animate.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./scrollbar.css";
+@import "./components/cad-dock.css";
+@import "./components/cad-rail.css";
+
+/* Tailwind v4 source scan — explicit per-area instead of a single brittle glob. */
+@source "../components/**/*.{ts,tsx,js,jsx}";
+@source "../core/**/*.{ts,tsx,js,jsx}";
+@source "../features/**/*.{ts,tsx,js,jsx}";
+@source "../hooks/**/*.{ts,tsx,js,jsx}";
+@source "../lib/**/*.{ts,tsx,js,jsx}";
+@source "../pages/**/*.{ts,tsx,js,jsx}";
+@source "../app/**/*.{ts,tsx,js,jsx}";
+@source "../platform/**/*.{ts,tsx,js,jsx}";
+@source "../runtime/**/*.{ts,tsx,js,jsx}";
+@source "../stores/**/*.{ts,tsx,js,jsx}";
+@source "../ui/**/*.{ts,tsx,js,jsx}";
+@source "../workspaces/**/*.{ts,tsx,js,jsx}";
+@source "../*.{ts,tsx,js,jsx,html}";
+@source not "../../../src-tauri/**";
+@source not "../../../packages/**";
+@source not "../../../backend/**";
+@source not "../../../dist/**";
+@source not "../../../.venv/**";
+@source not "../../../../../dist/**";
+@source not "../../../../../python/**";
+@source not "../../../../../src-tauri/**";
+@source not "../../../../../.tlanticad/**";
+@source not "../../../../../.venv/**";
+
+@custom-variant dark (&:is(.dark *));

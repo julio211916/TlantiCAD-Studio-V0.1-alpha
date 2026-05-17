@@ -1,0 +1,25 @@
+[package]
+name = "tlanticad-mesh"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "TlantiCAD Mesh Processing - Core mesh operations"
+
+[dependencies]
+tlanticad-core = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+nalgebra = { workspace = true }
+hashbrown = { workspace = true }
+rayon = { workspace = true }
+
+# Mesh processing
+csgrs = "0.20"
+ply-rs = "0.1"
+stl_io = "0.8"
+obj = "0.10"
+
+# Spatial indexing
+rstar = "0.12"

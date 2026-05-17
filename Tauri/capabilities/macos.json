@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop-macos",
+  "description": "macOS-specific desktop capabilities for TlantiCAD Studio windows.",
+  "windows": ["main", "tlanticad-*", "tlantidb-*"],
+  "platforms": ["macOS"],
+  "permissions": [
+    "core:default",
+    "positioner:default"
+  ]
+}
